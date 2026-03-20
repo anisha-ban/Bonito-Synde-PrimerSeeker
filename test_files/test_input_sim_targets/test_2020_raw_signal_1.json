@@ -1,0 +1,43 @@
+[
+    {
+        "read_id": "read_70f8af5f-3705-4694-88bf-a992cd814e95",
+        "fwd_primer": "TCTATCTACTCGTGCTCGCTAGCTG",
+        "guppy_position": [
+            440,
+            445,
+            455,
+            465,
+            470,
+            490,
+            495,
+            500,
+            510,
+            515,
+            520,
+            530,
+            535,
+            550,
+            560,
+            565,
+            575,
+            580,
+            590,
+            595,
+            605,
+            610,
+            615,
+            630,
+            635,
+            645
+        ],
+        "guppy_aligned_primer_ref": "TCTATCTACTCGTGCTCGCTAGCTG",
+        "guppy_aligned_primer_pattern": "|||||||||||||||||||||||||",
+        "guppy_aligned_primer_match": "TCTATCTACTCGTGCTCGCTAGCTG",
+        "guppy_score": 125.0,
+        "ctc_basecall_lev_primer_position": 222,
+        "ctc_primer_position": 219,
+        "ctc_primer_search_score": 0.24468298256397247,
+        "lokatt_score": -139.56968688964844,
+        "lokatt_position": 246
+    }
+]

@@ -12,9 +12,7 @@ from bonito.io import DecoderWriter, PreprocessReader
 import torch
 import numpy as np
 
-
 def main(args):
-
     sys.stderr.write("> loading model\n")
     model = load_model(args.model_directory, args.device, weights=int(args.weights), half=args.half)
 
@@ -37,7 +35,7 @@ def main(args):
                 break
 
             read_id, raw_data = read
-
+            print('bonito: raw_data.shape: ', raw_data.shape)
             if len(raw_data) > max_read_size:
                 sys.stderr.write("> skipping long read %s (%s samples)\n" % (read_id, len(raw_data)))
                 continue
@@ -48,8 +46,9 @@ def main(args):
             raw_data = raw_data[np.newaxis, np.newaxis, :].astype(dtype)
             gpu_data = torch.tensor(raw_data).to(args.device)
             posteriors = model(gpu_data).exp().cpu().numpy().squeeze()
-
-            writer.queue.put((read_id, posteriors))
+            print('bonito: posteriors.shape', posteriors.shape)
+            posteriors.tofile(args.post_file)
+            # writer.queue.put((read_id, posteriors))
 
     duration = time.perf_counter() - t0
 
@@ -69,4 +68,5 @@ def argparser():
     parser.add_argument("--weights", default="0", type=str)
     parser.add_argument("--beamsize", default=5, type=int)
     parser.add_argument("--half", action="store_true", default=False)
+    parser.add_argument("--post_file",type=str,required=True)
     return parser

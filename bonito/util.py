@@ -16,6 +16,7 @@ import parasail
 import numpy as np
 from ont_fast5_api.fast5_interface import get_fast5_file
 
+
 try:
     from claragenomics.bindings import cuda
     from claragenomics.bindings.cudapoa import CudaPoaBatch

@@ -31,5 +31,5 @@ def decode(predictions, alphabet, beam_size=5, threshold=0.1):
     if beam_size == 1:
         sequence = greedy_ctc_decode(predictions, alphabet)
     else:
-        sequence, _ = beam_search(predictions.astype(np.float32), alphabet, beam_size, threshold)
+        sequence, _, _ = beam_search(predictions.astype(np.float32), alphabet, beam_size, threshold)
     return sequence

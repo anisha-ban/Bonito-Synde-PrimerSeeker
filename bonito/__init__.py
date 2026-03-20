@@ -1,7 +1,8 @@
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 
-from bonito import basecaller, evaluate, view, convert, download
-modules = ['basecaller', 'evaluate', 'view', 'convert', 'download']
+from bonito import basecaller, gen_entries, evaluate, view, convert, download, my_decoder, primer_search, basecall_complexity
+#modules = ['basecaller', 'evaluate', 'view', 'convert', 'download']
+modules = ['basecaller', 'gen_entries', 'my_decoder', 'primer_search', 'evaluate', 'view', 'convert', 'download', 'basecall_complexity']
 
 try:
     from bonito import train, tune
