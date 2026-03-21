@@ -1,14 +1,25 @@
 # Bonito
 
-- Forked from [Bonito](https://github.com/nanoporetech/) (v0.1.2) by ONT
+- Forked from [Bonito](https://github.com/nanoporetech/bonito) (v0.1.2) by ONT
 - Based on the work `SynDe: Syndrome--guided Decoding of Raw Nanopore Reads` [Arxiv: ]
-- This repository includes the Bonito-based implementations (v0.1.2) of our novel algorithms PrimerSeeker and Synde.
+- The `my-extension` branch of this repository includes the Bonito-based implementations (v0.1.2) of our novel algorithms PrimerSeeker and Synde.
     - PrimerSeeker: a dedicated algorithm that locates the start of a primer in the raw read
     - Synde: a solution for basecaller-decoder integration that performs convolutional decoding by performing a constrained beam search -  one that exploits the syndrome trellis representation of the concerned convolutional code. Its main advantage is that its complexity is independent of the memory of the convolutional code.
-
+- Thanks to [Roman Sokolovskii](https://github.com/rsokolovskii) for contributing to this project!!
 
 ## Download and installation
 
+Needs our custom `fast-ctc-decode`:
+```bash
+git clone --recursive -b my-extension https://github.com/anisha-ban/fast-ctc-decode-synde-primerseeker
+cd fast-ctc-decode-synde-primerseeker/
+pip install "maturin>=0.14,<0.15"
+python -m maturin build --release --features python # this should create a folder `target` named target with the required wheel file
+pip install target/wheels/*.whl --force-reinstall
+cd ..
+```
+
+Now install Bonito:
 ```bash
 git clone --recursive -b my-extension https://github.com/anisha-ban/Bonito-Synde-PrimerSeeker
 cd Bonito-Synde-PrimerSeeker/
