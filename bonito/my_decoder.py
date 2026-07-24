@@ -133,7 +133,6 @@ def get_primer_start(sim_entry, primer_search, primer_offset, stride):
 
 
 def main(args):
-
     sys.stderr.write("> loading model\n")
     model = load_model(args.model_directory, args.device, weights=int(args.weights), half=args.half)
 
@@ -267,6 +266,7 @@ def main(args):
             # generate random codeword and get corresponding offset
             codeword = get_random_codeword(args, payload, cc_code, mark_code, conv_codeword_length, base_dict)
             assert len(codeword) == payload_length
+
             offset_int = [(4-codeword[x] + payload_int[x]) % 4 for x in range(payload_length)]
             offset_sequence = ''.join([int_dict[el] for el in offset_int])
 
@@ -402,13 +402,15 @@ def main(args):
             else:
                 # decoding result is a complete path
                 assert seq[:primer_length-primer_offset] == target_fwd_primer[primer_offset:], 'fwd primer mismatch in decoding result'
+
                 if len(seq) == payload_length + 2*(primer_length-primer_offset):
-                    assert seq[-primer_length+primer_offset:] == target_back_primer[:-primer_offset], 'back primer mismatch in decoding result'
+                    assert seq[-primer_length+primer_offset:] == target_back_primer[:primer_length-primer_offset], 'back primer mismatch in decoding result'
 
                 # undo offset, check if valid marker codeword/convolutional codeword
                 seq = seq[primer_length-primer_offset:primer_length-primer_offset+payload_length]
                 est_payload = [base_dict[o] for o in seq]
                 est_codeword = [ (est_payload[j] - offset_int[j]) % 4 for j in range(payload_length)]
+
                 assert validate_word(args.code, cc_code, mark_code, est_codeword), "invalid decoder output"
 
                 if est_codeword != codeword:

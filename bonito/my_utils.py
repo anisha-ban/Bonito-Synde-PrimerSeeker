@@ -38,7 +38,7 @@ def get_reference_alignment(bam_file, read_id):
     return None
 
 def read_fasta_to_dict(fa_file):
-#Returns dictionary with sequence IDs as keys and sequences as values
+# Returns dictionary with sequence IDs as keys and sequences as values
 
     sequences = {}
     current_id = None
