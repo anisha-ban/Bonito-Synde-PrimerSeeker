@@ -1,7 +1,7 @@
 # Bonito
 
 - Forked from [Bonito](https://github.com/nanoporetech/bonito) (v0.1.2) by ONT
-- Based on the work `SynDe: Syndrome--guided Decoding of Raw Nanopore Reads` [Arxiv: ]
+- Based on the work `SynDe: Syndrome--guided Decoding of Raw Nanopore Reads` [Arxiv version](https://arxiv.org/abs/2604.01054)
 - The `my-extension` branch of this repository includes the Bonito-based implementations (v0.1.2) of our novel algorithms PrimerSeeker and Synde.
     - PrimerSeeker: a dedicated algorithm that locates the start of a primer in the raw read
     - Synde: a solution for basecaller-decoder integration that performs convolutional decoding by performing a constrained beam search -  one that exploits the syndrome trellis representation of the concerned convolutional code. Its main advantage is that its complexity is independent of the memory of the convolutional code.
